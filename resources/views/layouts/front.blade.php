@@ -19,13 +19,13 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
 
-    <link rel="stylesheet" href="assets/css/algolia.css">
+    <link rel="stylesheet" href="/assets/css/algolia.css">
 </head>
 
 
@@ -33,10 +33,10 @@
     <header>
         <div class="top-nav container">
             <div class="top-nav-left">
-                <div class="logo"><a href="index.html">Ecommerce</a></div>
+                <div class="logo"><a href="{{ route('hompage') }}">Ecommerce</a></div>
                 <ul>
                     <li>
-                        <a href="shop.html">
+                        <a href="{{ route('shop') }}">
                             Shop
                         </a>
                     </li>
@@ -98,7 +98,7 @@
     <div class="breadcrumbs">
         <div class="breadcrumbs-container container">
             <div>
-                <a href="index.html">Home</a>
+                <a href="{{ route('hompage') }}">Home</a>
                 <i class="fa fa-chevron-right breadcrumb-separator"></i>
                 <span>Shop</span>
             </div>
@@ -129,7 +129,7 @@
 
     <footer>
         <div class="footer-content container">
-            <div class="made-with">Made with <i class="fa fa-heart heart"></i> by Andre Madarang</div>
+            <div class="made-with">{{env('APP_NAME')}}</div>
             <ul>
                 <li>Follow Me:</li>
                 <li><a href="#"><i class="fa Follow Me:"></i></a></li>
@@ -143,9 +143,9 @@
     </footer>
 
     <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
-    <script src="assets/js/algoliasearch.min.js"></script>
-    <script src="assets/js/autocomplete.min.js"></script>
-    <script src="assets/js/algolia.js"></script>
+    <script src="/assets/js/algoliasearch.min.js"></script>
+    <script src="/assets/js/autocomplete.min.js"></script>
+    <script src="/assets/js/algolia.js"></script>
 
 </body>
 
