@@ -3,3 +3,6 @@
 @section('content')
     <h1>Ana asdasd</h1>
 @endsection
+@section('customJS')
+    
+@endsection

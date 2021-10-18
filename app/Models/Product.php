@@ -13,8 +13,8 @@ class Product extends Model
     return $this->belongsToMany(
             Category::class,
             'product_categories',//categorynin altındaki subcategory bu tablodaki sütunları seçerek veriye ulaşıyoruz
-            'product_id',
-            'category_id');
+            'product_id',//many to many de bu fonksiyonun yazıldığı modelin idsi 
+            'category_id');//alt kategorideki ilişki sütunun idsi
     }
    
     public function image()
@@ -24,7 +24,7 @@ class Product extends Model
             'product_images',
             'product_id',
             'images_id');
-    }  
+    } 
     public function order()
     {
     return $this->belongsToMany(
@@ -33,7 +33,10 @@ class Product extends Model
             'product_id',
             'order_id');
     }
-
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
 
 
     public function product_images()
@@ -42,13 +45,10 @@ class Product extends Model
     }
     public function product_categories()
     {
-        //burada kategorilerin adını idsini return edeceğim
+     
         return $this->hasMany('App\Models\ProductCategory');
     }
-    public function productcategory()
-    {
-        return $this->hasOneThrough(ProductCategory::class, Category::class);
-    }
+   
     public function product_orders()
     {
         return $this->hasMany('App\Models\ProductOrder');

@@ -31,7 +31,7 @@
                  $data=$item->image->first();
             @endphp
             <div class="product">
-                <a href="{{ route('hompage') }}">
+                <a href="{{ route('productDetails', ['slug'=>$item->slug]) }}">
                     <img src="{{$data->image_url??'none'}}" alt="product" /></a>
                 <a href="{{ route('hompage') }}">
                     <div class="product-name">{{$item->title}}</div>
@@ -47,22 +47,7 @@
         <nav>
             <ul class="pagination">
 
-                <li class="page-item">
-                    <a class="page-link" href="shop99ab.html?sort=high_low&amp;page=1" rel="prev"
-                        aria-label="&laquo; Previous">&lsaquo;</a>
-                </li>
-
-
-
-
-
-                <li class="page-item"><a class="page-link" href="shop99ab.html?sort=high_low&amp;page=1">1</a></li>
-                <li class="page-item active" aria-current="page"><span class="page-link">2</span></li>
-
-
-                <li class="page-item disabled" aria-disabled="true" aria-label="Next &raquo;">
-                    <span class="page-link" aria-hidden="true">&rsaquo;</span>
-                </li>
+                {{ $product->links() }}
             </ul>
         </nav>
 

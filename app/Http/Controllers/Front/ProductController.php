@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function AllProductList()
     {
         
-        $product=Product::with('category','image')->get();
+        $product=Product::with('category','image')->simplePaginate(2);
         $category=Category::all();
         return view('front.shop.product-list',compact('product'),compact('category'));
     
@@ -38,17 +38,25 @@ class ProductController extends Controller
     public function categoryProductList($id)
     {
         
-        // $product=Product::find($id);
-        $product = Category::find($id)->product;
+        $categoryProduct = Category::where('id',$id)->firstOrFail();
+        $product=$categoryProduct->product()->simplePaginate(1);
+      
         $category=Category::where('id',$id)->get();
-   return view('front.shop.product-list',compact('product'),compact('category'));
+       
+ return view('front.shop.product-list',compact('product'),compact('category'));
     
     }
+    
 
    
-    public function productDetails($id)
+    public function productDetails($slug)
     {
-        //
+        
+        $product = Product::where('slug',$slug)->with('image')->simplePaginate(2)->firstOrFail();
+        $category=Category::where('slug',$slug)->get();
+      
+
+    return view('front.shop.product-single',compact('product'),compact('category'));
     }
 
   
