@@ -28,66 +28,37 @@ class CartController extends Controller
 
 
     }
-
+ 
    
     public function CartAdd($id)
     {
-        //
+        $user=Auth::User();
+    $cartItem=   Cart::create(['product_id' =>1 ,
+    'user_id' => 1,
+    'quantity'=>1]
+);
+if ($cartItem) {
+    return back()->with('durum', 'ürün Eklendi');
+
+}
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function destroy($id)
     {
-        //
+      Cart::where('id',$id)->delete();
+      return back()->with('durum', 'product deleted');
     }
 }

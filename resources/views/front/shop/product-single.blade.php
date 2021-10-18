@@ -39,8 +39,8 @@
 
         <p>&nbsp;</p>
 
-        <form action="https://laravelecommerceexample.ca/cart/40" method="POST">
-            <input type="hidden" name="_token" value="P5Y6bwONpZLTNUJJJ5jelRoRHRLzYYRhUAXNPssU">
+        <form action="{{ route('CartAdd', ['id'=>$product->id]) }}" method="POST">
+            {{ csrf_field() }}
             <button type="submit" class="button button-plain">Add to Cart</button>
         </form>
     </div>

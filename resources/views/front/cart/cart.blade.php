@@ -27,10 +27,9 @@
                 </div>
                 <div class="cart-table-row-right">
                     <div class="cart-table-actions">
-                        <form action="https://laravelecommerceexample.ca/cart/eef12573176125ce53e333e13d747a17"
-                            method="POST">
-                            <input type="hidden" name="_token" value="Ra7kLKpKw4mCOzdqZtcHEhAzMY1AUQIJb2Ba624a">
-                            <input type="hidden" name="_method" value="DELETE">
+                        <form action="{{ route('cartDelete', $item->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
 
                             <button type="submit" class="cart-options">Remove</button>
                         </form>
@@ -46,7 +45,7 @@
                          
                         </select>
                     </div>
-                    <div>₺{{$item->product->price}}</div>
+                    <div>{{$item->product->price}}₺</div>
                 </div>
             </div> <!-- end cart-table-row -->
 
@@ -71,22 +70,30 @@
                     <span class="cart-totals-total">Total</span>
                 </div>
                 <div class="cart-totals-subtotal">
-                    ₺4990.68 <br>
-                    ₺10 <br>
-                    <span class="cart-totals-total">₺5639.47</span>
+                    @php
+                        $total=0;
+                        foreach ($cartsItem as $item)
+                        {
+                            $total+=$item->product->price*$item->quantity;            
+                
+                        }
+            
+                    @endphp
+                       {{$total}} ₺<br/>
+                    10₺ <br>
+                    <span class="cart-totals-total">{{$total+10}}₺</span>
                 </div>
             </div>
         </div> <!-- end cart-totals -->
 
         <div class="cart-buttons">
-            <a href="https://laravelecommerceexample.ca/shop" class="button">Continue Shopping</a>
+            <a href="{{ route('shop') }}" class="button">Continue Shopping</a>
             <a href="https://laravelecommerceexample.ca/checkout" class="button-primary">Proceed to Checkout</a>
         </div>
 
 
 
-        <h3>You have no items Saved for Later.</h3>
-
+    
 
     </div>
 
