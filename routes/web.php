@@ -27,6 +27,7 @@ Route::group(['namespace'=>'Front'],function(){
     Route::get('/cart', 'CartController@List')->name('cartList');
     Route::delete('/cart/destroy/{id}', 'CartController@destroy')->name('cartDelete');
     Route::post('/cart/cartadd/{id}', 'CartController@CartAdd')->name('CartAdd');
+    Route::get('/{slug}', 'HomeController@custom')->name('custom');
    
 
 });

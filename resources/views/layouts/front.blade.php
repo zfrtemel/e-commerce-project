@@ -43,12 +43,12 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link " href="#">
+                        <a class="nav-link " href="{{ route('custom', ['slug'=>'hakkimizda']) }}">
                            Hakkımızda
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link " href="https://blog.laravelecommerceexample.ca/">
+                        <a class="nav-link " href="{{ route('custom', ['slug'=>'iletisim']) }}">
                            İletişim
                         </a>
                     </li>
@@ -102,16 +102,15 @@
         <div>
             <a href="{{ route('hompage') }}">Ana Sayfa</a>
             <i class="fa fa-chevron-right breadcrumb-separator"></i>
+            @if(Route::current()->getName() !== 'custom')
             <span>Mağaza</span>
-
             <i class="fa fa-chevron-right breadcrumb-separator"></i>
+
+            @endif
+          
+          
+
             <span>@yield('breadcrumbs')</span>
-           
-           
-
-
-
-         
         </div>
         <div >
             <nav class="navbar navbar-light bg-light">

@@ -12,4 +12,8 @@ class Image extends Model
     {
         return $this->hasMany('App\Models\ProductImage');
     }
+    public function page()
+    {
+        return $this->belongsTo(Page::class,'page_image_id');
+    }
 }

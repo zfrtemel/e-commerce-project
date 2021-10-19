@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\Page;
+use App\Models\Image;
 
 
 class HomeController extends Controller
@@ -18,5 +20,12 @@ class HomeController extends Controller
                                 ->with('image') 
                                     ->get();
         return view('front.home',compact('slider'),compact('product'));
+    }
+    public function custom($slug)
+    {
+        $pages=Page::where('slug',$slug)->firstOrFail();
+$image=Image::where('id',$pages->id)->firstOrFail();
+     
+       return view('front.custom',compact('pages'),compact('image'));
     }
 }

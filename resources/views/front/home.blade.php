@@ -37,6 +37,10 @@
         @endforeach
      
     </div>
+    <div class="carousel-caption d-none d-md-block">
+        <h5 style="color: black">Laravel Ecommerce </h5>
+        <p style="color: black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus quam vel posuere euismod. Mauris facilisis vitae mauris id ultricies. Vestibulum at pulvinar orci. Duis est purus, euismod et tincidunt et, porta et ante.</p>
+      </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Geri</span>
@@ -55,6 +59,7 @@
 <br/>
 <br/>
 <br/>
+<div class="featured-section">
 <div class="container">
     <h1 class="text-center">Laravel Ecommerce</h1>
 
@@ -89,6 +94,7 @@
    
 </div> <!-- end container -->
 
+</div>
 
 
 @endsection
