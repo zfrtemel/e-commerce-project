@@ -9,15 +9,7 @@ use App\Models\Category;
 use App\Models\Image;
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('front.home');
-    }
+    
 
  
 
@@ -42,8 +34,8 @@ class ProductController extends Controller
         $product=$categoryProduct->product()->simplePaginate(1);
       
         $category=Category::where('id',$id)->get();
-       
- return view('front.shop.product-list',compact('product'),compact('category'));
+        $categoryName= $category->first();
+        return view('front.shop.product-list',compact('product'),compact('category'),compact('categoryName'));
     
     }
     
@@ -52,11 +44,10 @@ class ProductController extends Controller
     public function productDetails($slug)
     {
         
-        $product = Product::where('slug',$slug)->with('image')->simplePaginate(2)->firstOrFail();
+        $product = Product::where('slug',$slug)->with('image','category')->simplePaginate(2)->firstOrFail();
         $category=Category::where('slug',$slug)->get();
-      
-
-    return view('front.shop.product-single',compact('product'),compact('category'));
+      $releated=Category::where('id',$product->category->first()->id)->with('product.image')->firstOrFail();
+   return view('front.shop.product-single',compact('product'),compact('category'))->with('releated',$releated->product);
     }
 
   

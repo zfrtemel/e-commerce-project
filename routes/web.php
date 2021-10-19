@@ -20,7 +20,7 @@ Route::group(['namespace'=>'Back'],function(){
 
 
 Route::group(['namespace'=>'Front'],function(){
-    Route::get('/', 'ProductController@index')->name('hompage');
+    Route::get('/', 'HomeController@index')->name('hompage');
     Route::get('/shop', 'ProductController@AllProductList')->name('shop');
     Route::get('/shop/category/{id}', 'ProductController@categoryProductList')->name('categoryList');
     Route::get('/shop/product/{slug?}', 'ProductController@productDetails')->name('productDetails');

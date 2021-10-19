@@ -1,5 +1,6 @@
 @extends('layouts.front')
 @section('title', 'site title')
+@section('breadcrumbs',$product->title)
 @section('content')
 <div class="product-section container">
     
@@ -29,9 +30,9 @@
         <h1 class="product-section-title">{{$product->title}}</h1>
         <div class="product-section-subtitle">{{$product->description}}</div>
         <div>
-            <div class="badge badge-success">In Stock</div>
+            <div class="badge badge-success">Stokta Mevcut</div>
         </div>
-        <div class="product-section-price">${{$product->price}}</div>
+        <div class="product-section-price">{{$product->price}}₺</div>
 
         <p>
             {{$product->description}}
@@ -41,37 +42,28 @@
 
         <form action="{{ route('CartAdd', ['id'=>$product->id]) }}" method="POST">
             {{ csrf_field() }}
-            <button type="submit" class="button button-plain">Add to Cart</button>
+            <button type="submit" class="button button-plain">Sepete Ekle</button>
         </form>
     </div>
    
 </div> <!-- end product-section -->
 
+
 <div class="might-like-section">
     <div class="container">
         <h2>You might also like...</h2>
         <div class="might-like-grid">
-            <a href="camera-9.html" class="might-like-product">
-                <img src="../storage/products/dummy/camera-9.jpg" alt="product">
-                <div class="might-like-product-name">Camera 9</div>
-                <div class="might-like-product-price">$2280.16</div>
+        {{-- for alanda döngü 4 e yükseltilecek yeteri kadar seeder verisi olmadığı için hata veriyor --}}
+            @for($i = 0; $i < 2; $i++) 
+            <a href="{{ route('productDetails', ['slug'=>$releated[$i]->slug]) }}" class="might-like-product">
+                <img src="{{$releated[$i]->image->first()->image_url ?? 'NONE'}}" alt="product">
+                <div class="might-like-product-name">{{$releated[$i]->title}}</div>
+                <div class="might-like-product-price">{{$releated[$i]->price}}₺</div>
             </a>
-            <a href="tablet-8.html" class="might-like-product">
-                <img src="../storage/products/dummy/tablet-8.jpg" alt="product">
-                <div class="might-like-product-name">Tablet 8</div>
-                <div class="might-like-product-price">$1017.73</div>
-            </a>
-            <a href="camera-6.html" class="might-like-product">
-                <img src="../storage/products/dummy/camera-6.jpg" alt="product">
-                <div class="might-like-product-name">Camera 6</div>
-                <div class="might-like-product-price">$2384.02</div>
-            </a>
-            <a href="desktop-9.html" class="might-like-product">
-                <img src="../storage/products/dummy/desktop-9.jpg" alt="product">
-                <div class="might-like-product-name">Desktop 9</div>
-                <div class="might-like-product-price">$4105.83</div>
-            </a>
-
+            @endfor
+        
+         
+            
         </div>
     </div>
 </div>

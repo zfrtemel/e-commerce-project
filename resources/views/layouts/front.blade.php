@@ -18,9 +18,10 @@
     <link href="img/favicon.html" rel="SHORTCUT ICON" />
 
     <!-- Fonts -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Styles -->
     <link rel="stylesheet" href="/assets/css/app.css">
@@ -34,21 +35,21 @@
     <header>
         <div class="top-nav container">
             <div class="top-nav-left">
-                <div class="logo"><a href="{{ route('hompage') }}">Ecommerce</a></div>
+                <div class="logo"><a class="nav-link " href="{{ route('hompage') }}">Ecommerce</a></div>
                 <ul>
                     <li>
-                        <a href="{{ route('shop') }}">
-                            Shop
+                        <a class="nav-link " href="{{ route('shop') }}">
+                            Tüm Ürünler
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            About
+                        <a class="nav-link " href="#">
+                           Hakkımızda
                         </a>
                     </li>
                     <li>
-                        <a href="https://blog.laravelecommerceexample.ca/">
-                            Blog
+                        <a class="nav-link " href="https://blog.laravelecommerceexample.ca/">
+                           İletişim
                         </a>
                     </li>
                 </ul>
@@ -59,17 +60,17 @@
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Giriş Yap') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Kayıt Ol') }}</a>
                             </li>
                         @endif
                         @else
-                        <li> <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        <li> <a id="navbarDropdown" class="nav-link " href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
@@ -77,9 +78,9 @@
                         <li class="nav-item ">
 
 
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="nav-link " href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Çıkış Yap') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -87,31 +88,43 @@
                             </form>
                         </li>
                     @endguest
-                    <li><a href="{{ route('cartList') }}">Cart
-                        </a></li>
-
+                    <li><a class="nav-link " href="{{ route('cartList') }}">Sepetim</a></li>
                 </ul>
             </div>
         </div> <!-- end top-nav -->
+        @yield('slider')
     </header>
 
+@if(Route::current()->getName() !== 'hompage')
+ 
+<div class="breadcrumbs">
+    <div class="breadcrumbs-container container">
+        <div>
+            <a href="{{ route('hompage') }}">Ana Sayfa</a>
+            <i class="fa fa-chevron-right breadcrumb-separator"></i>
+            <span>Mağaza</span>
 
-    <div class="breadcrumbs">
-        <div class="breadcrumbs-container container">
-            <div>
-                <a href="{{ route('hompage') }}">Home</a>
-                <i class="fa fa-chevron-right breadcrumb-separator"></i>
-                <span>Shop</span>
-            </div>
-            <div >
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
-            </div>
+            <i class="fa fa-chevron-right breadcrumb-separator"></i>
+            <span>@yield('breadcrumbs')</span>
+           
+           
+
+
+
+         
         </div>
-    </div> <!-- end breadcrumbs -->
+        <div >
+            <nav class="navbar navbar-light bg-light">
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </nav>
+        </div>
+    </div>
+</div> <!-- end breadcrumbs -->
 
+@endif
     <div class="container">
         @yield('content')
     </div>
@@ -133,6 +146,9 @@
         </div> <!-- end footer-content -->
     </footer>
 @yield('customJS')
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
     <script src="/assets/js/algoliasearch.min.js"></script>
     <script src="/assets/js/autocomplete.min.js"></script>

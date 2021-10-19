@@ -888,7 +888,7 @@ header .top-nav {
   display: flex;
   justify-content: space-between;
   padding: 30px 0;
-  letter-spacing: 1.5px;
+
 }
 
 header .top-nav .logo {

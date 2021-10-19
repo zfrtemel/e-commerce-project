@@ -61,4 +61,4 @@ if ($cartItem) {
       Cart::where('id',$id)->delete();
       return back()->with('durum', 'product deleted');
     }
-}
+} 
