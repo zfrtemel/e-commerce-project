@@ -2,6 +2,12 @@
 @section('title', 'site title')
 @section('breadcrumbs',$product->title)
 @section('content')
+@if(isset($durum))
+            
+    <div class="alert alert-success">
+        {{$durum}}
+    </div>
+    @endif
 <div class="product-section container">
     
     <div>

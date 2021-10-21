@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function AllProductList()
     {
         
-        $product=Product::with('category','image')->simplePaginate(2);
+        $product=Product::with('category','image')->simplePaginate(6);
         $category=Category::all();
         return view('front.shop.product-list',compact('product'),compact('category'));
     

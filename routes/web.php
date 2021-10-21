@@ -27,7 +27,17 @@ Route::group(['namespace'=>'Front'],function(){
     Route::get('/cart', 'CartController@List')->name('cartList');
     Route::delete('/cart/destroy/{id}', 'CartController@destroy')->name('cartDelete');
     Route::post('/cart/cartadd/{id}', 'CartController@CartAdd')->name('CartAdd');
-    Route::get('/{slug}', 'HomeController@custom')->name('custom');
+    Route::post('/cart/cartProductUpdate', 'CartController@quantityUpdate')->name('quantity');
+    Route::get('/checkout', 'CartController@checkout')->name('order');
+    Route::post('/checkout/add', 'CartController@checkoutAdd')->name('orderAdd');
+
+
+
+
+
+    Route::get('/{slug}', 'HomeController@custom')->name('custom');//bu route en altda olmak zorunda / sonrasında 
+    //girilen ilk ve tek değeri slug olarak algılayıp ona göre işlem yapıyor diğerlerinin altında olursa sorun çıkartmıyor
+    
    
 
 });

@@ -79,7 +79,7 @@
             
        
         <div class="product">
-            <a href="{{ route('productDetails', ['slug'=>$item->slug]) }}"><img src="{{$item->image->first()->image_url ?? none}}" alt="product"></a>
+            <a href="{{ route('productDetails', ['slug'=>$item->slug]) }}"><img src="{{$item->image->first()->image_url ?? 'none'}}" alt="product"></a>
             <a href="{{ route('productDetails', ['slug'=>$item->slug]) }}">
                 <div class="product-name">{{$item->title}}</div>
             </a>

@@ -15,8 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id')->index();
-            $table->foreign('order_id')->references("id")->on("users")->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->index();
+            $table->foreign('user_id')->references("id")->on("users")->onDelete('cascade');
             $table->string('billing_Email');
             $table->string('billing_name');
             $table->string('billing_adress');

@@ -21,7 +21,7 @@
                             src="{{$item->product->image->first()->image_url ??'none'}}" alt="item"
                             class="cart-table-img"></a>
                     <div class="cart-item-details">
-                        <div class="cart-table-item"><a href="https://laravelecommerceexample.ca/shop/laptop-12">{{$item->product->title}}</a></div>
+                        <div class="cart-table-item"><a href="{{ route('productDetails', ['slug'=>$item->product->slug]) }}">{{$item->product->title}}</a></div>
                         <div class="cart-table-description">{{$item->product->description}}</div>
                     </div>
                 </div>
@@ -31,16 +31,16 @@
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
 
-                            <button type="submit" class="cart-options">Remove</button>
+                            <button type="submit" class="cart-options">Sil</button>
                         </form>
                     </div>
                     <div>
-                        <select class="quantity" data-id="eef12573176125ce53e333e13d747a17" data-productquantity="10">
+                        <select class="quantity"  data-productquantity="10">
                             @for ($i = 0; $i < 10; $i++)
                             @if($item->quantity==$i)
-                            <option selected> {{$i}}</option>
+                            <option data-cart-id="{{$item->id}}" selected> {{$i}}</option>
                             @endif
-                            <option> {{$i}}</option>
+                            <option data-cart-id="{{$item->id}}"> {{$i}}</option>
                             @endfor
                          
                         </select>
@@ -59,15 +59,14 @@
     
         <div class="cart-totals">
             <div class="cart-totals-left">
-                Shipping is free because we’re awesome like that. Also because that’s additional stuff I don’t feel like
-                figuring out :).
+             sepetteki ürünlerinizi satın alabilirsiniz
             </div>
 
             <div class="cart-totals-right">
                 <div>
-                    Subtotal <br>
-                    shipping fee<br>
-                    <span class="cart-totals-total">Total</span>
+                    Ara Toplam <br>
+                    Kargo Ücreti<br>
+                    <span class="cart-totals-total">Toplam</span>
                 </div>
                 <div class="cart-totals-subtotal">
                     @php
@@ -79,16 +78,17 @@
                         }
             
                     @endphp
-                       {{$total}} ₺<br/>
+                     <p class="totalPrice">  {{$total}} ₺</p>
+                     <br/>
                     10₺ <br>
-                    <span class="cart-totals-total">{{$total+10}}₺</span>
+                    <span class="cartTotal cart-totals-total">{{$total+10}}₺</span>
                 </div>
             </div>
         </div> <!-- end cart-totals -->
 
         <div class="cart-buttons">
-            <a href="{{ route('shop') }}" class="button">Continue Shopping</a>
-            <a href="https://laravelecommerceexample.ca/checkout" class="button-primary">Proceed to Checkout</a>
+            <a href="{{ route('shop') }}" class="button">Mağazaya Dön</a>
+            <a href="{{ route('order') }}" class="button-primary">Sipariş Ver</a>
         </div>
 
 
@@ -100,5 +100,32 @@
 </div>
 @endsection
 @section('customJS')
+<script>
+$(document).ready(function(){
+    $('select').on('change', function(e) {
+        var data={
+        'id':$(this).children("option:selected").attr('data-cart-id'),
+        'quantity':this.value
+        };
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '/cart/cartProductUpdate',
+            contentType: 'application/json;charset=utf-8',
+            data:JSON.stringify(data),
+            dataType: 'json',
+            success: function (result) {
+                console.log(result);
+            }
+
+        });
+    });
+});
+  </script>
 @endsection

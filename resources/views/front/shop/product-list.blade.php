@@ -10,7 +10,7 @@
         <ul>
         @foreach ($category as $categories )
            
-                    <li><i class="fas fa-angle-double-right"></i> <a href="{{ route('categoryList', ['id'=>$categories->id]) }}">{{$categories->name}}</a></li>
+                    <li> <a href="{{ route('categoryList', ['id'=>$categories->id]) }}"> <i class="fas fa-angle-double-right"></i> {{$categories->name}}</a></li>
 
 
               
