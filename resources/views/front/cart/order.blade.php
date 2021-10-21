@@ -8,7 +8,7 @@
 
 
 
-  <h1 class="checkout-heading ">Checkout</h1>
+  <h1 class="checkout-heading ">Sipariş</h1>
   <div class="checkout-section">
     <div>
       <form action="{{ route('orderAdd') }}" method="POST" id="payment-form">
@@ -85,17 +85,21 @@
 
 
     <div class="checkout-table-container">
-      <h2>Your Order</h2>
-
+      <h2>Ürünleriniz</h2>
+      @php
+        $totals=0;
+      @endphp
+@foreach ($cartsItem as $item )
+  
       <div class="checkout-table">
         <div class="checkout-table-row">
           <div class="checkout-table-row-left">
-            <img src="https://laravelecommerceexample.ca/storage/products/dummy/phone-2.jpg" alt="item"
+            <img src="{{$item->product->image->first()->image_url ??'none'}}" alt="item"
               class="checkout-table-img">
             <div class="checkout-item-details">
-              <div class="checkout-table-item">Phone 2</div>
-              <div class="checkout-table-description">32GB, 5.9 inch screen, 4GHz Quad Core</div>
-              <div class="checkout-table-price">$938.53</div>
+              <div class="checkout-table-item">{{$item->product->title}}</div>
+              <div class="checkout-table-description">{{$item->product->description}}</div>
+              <div class="checkout-table-price">{{$item->product->price}}₺</div>
             </div>
           </div> <!-- end checkout-table -->
 
@@ -105,22 +109,30 @@
         </div> <!-- end checkout-table-row -->
 
       </div> <!-- end checkout-table -->
+{{-- loop->last --}}
 
-      <div class="checkout-totals">
-        <div class="checkout-totals-left">
-          Subtotal <br>
-          Tax (13%)<br>
-          <span class="checkout-totals-total">Total</span>
+@php
+   $totals= $totals+$item->product->price;
+@endphp
+@if($loop->last)
+  
+<div class="checkout-totals">
+  <div class="checkout-totals-left">
+   
+    <span class="checkout-totals-total">Toplam Tutar</span>
 
-        </div>
+  </div>
 
-        <div class="checkout-totals-right">
-          $938.53 <br>
-          $122.01 <br>
-          <span class="checkout-totals-total">$1060.54</span>
+  <div class="checkout-totals-right">
+    
+    <span class="checkout-totals-total">{{$totals}}₺</span>
 
-        </div>
-      </div> <!-- end checkout-totals -->
+  </div>
+</div> <!-- end checkout-totals -->
+@endif
+    
+      @endforeach
+
     </div>
 
   </div> <!-- end checkout-section -->

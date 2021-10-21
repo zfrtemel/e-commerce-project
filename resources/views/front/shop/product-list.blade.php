@@ -5,12 +5,12 @@
 
 <div class="row products-section container">
     @isset($category)
-    <div class="col-sm-4">
+    <div class="col-sm-8">
         <h3 style="font-weight: bold">Kategoriler</h3>
-        <ul>
+        <ul class="list-group">
         @foreach ($category as $categories )
            
-                    <li> <a href="{{ route('categoryList', ['id'=>$categories->id]) }}"> <i class="fas fa-angle-double-right"></i> {{$categories->name}}</a></li>
+                    <li class="list-group-item"> <a href="{{ route('categoryList', ['id'=>$categories->id]) }}"> <i class="fas fa-angle-double-right"></i> {{$categories->name}}</a></li>
 
 
               

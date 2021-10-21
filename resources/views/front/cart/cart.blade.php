@@ -29,7 +29,7 @@
                     <div class="cart-table-actions">
                         <form action="{{ route('cartDelete', $item->id) }}" method="POST">
                             {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
+                            {{ method_field('DELETE') }} 
 
                             <button type="submit" class="cart-options">Sil</button>
                         </form>

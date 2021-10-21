@@ -18,7 +18,7 @@ class HomeController extends Controller
 
         $product=Product::where('featured',1)
                                 ->with('image') 
-                                    ->get();
+                                    ->take(12)->get();
         return view('front.home',compact('slider'),compact('product'));
     }
     public function custom($slug)

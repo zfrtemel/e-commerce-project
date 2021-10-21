@@ -17,7 +17,7 @@ class UserSeed extends Seeder
             DB::table('users')->insert([
                 'name'=>'admin',
                 'email'=>'admin@admin.com',
-                'password'=>md5(1),
+                'password'=>'$2y$10$DiNgDT9da9V/kxYaIbNwE.tKyHfegB7XIBdR3RtL86NQvL4MTtKQ.',//12345678
                 'is_Admin'=>1,
             ]);
     }

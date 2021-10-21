@@ -47,7 +47,7 @@ class ProductSeed extends Seeder
 
 $sayi=1;
 
-        for ($z=1; $z < 18; $z++) { 
+        for ($z=1; $z < 19; $z++) { 
             if ($sayi ==4) {
                 $sayi=1;
             }
@@ -64,6 +64,13 @@ $sayi=1;
             }
             $sayi=$sayi+1;
                 
+        }
+        for ($i=1; $i <5 ; $i++) { 
+            DB::table('sliders')->insert([
+                        'slider_url'=>'\assets\img\slider.jpg',
+                        'slider_order'=>$i,
+                     ]);
+            
         }
 
        
