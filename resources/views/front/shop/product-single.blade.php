@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title', 'site title')
+@section('title', '{{$product->title}}')
 @section('breadcrumbs',$product->title)
 @section('content')
 @if(isset($durum))

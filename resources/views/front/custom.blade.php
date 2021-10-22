@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title', 'site title')
+@section('title', '{{$pages->page_title}}')
 @section('breadcrumbs',$pages->page_title)
 
 @section('content')
@@ -14,7 +14,7 @@
 
     <p class="section-description">
 
-        {{$pages->page_content}}
+        {!! $pages->page_content !!}
 
     </p>
 

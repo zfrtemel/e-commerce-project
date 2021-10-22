@@ -13,7 +13,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+    <title>e-commerce @yield('title')</title>
 
     <link href="img/favicon.html" rel="SHORTCUT ICON" />
 
@@ -72,7 +72,10 @@
                         @else
                        
                         <li class="nav-item ">
-
+                            <a class="nav-link " href="{{ route('checkoutList') }}">
+                                {{ Auth::user()->name }}
+                            </a>
+                            
 
                             <a class="nav-link " href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -108,14 +111,7 @@
 
             <span>@yield('breadcrumbs')</span>
         </div>
-        <div >
-            <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-              </nav>
-        </div>
+     
     </div>
 </div> <!-- end breadcrumbs -->
 
@@ -130,12 +126,11 @@
         <div class="footer-content container">
             <div class="made-with">{{env('APP_NAME')}}</div>
             <ul>
-                <li>Follow Me:</li>
+                <li>Bizi Takip Edin:</li>
                 <li><a href="#"><i class="fa Follow Me:"></i></a></li>
-                <li><a href="http://andremadarang.com/"><i class="fa fa-globe"></i></a></li>
-                <li><a href="http://youtube.com/drehimself"><i class="fa fa-youtube"></i></a></li>
-                <li><a href="http://github.com/drehimself"><i class="fa fa-github"></i></a></li>
-                <li><a href="http://twitter.com/drehimself"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="http://youtube.com/"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="http://github.com/zfrtemel"><i class="fa fa-github"></i></a></li>
+                <li><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
             </ul>
 
         </div> <!-- end footer-content -->

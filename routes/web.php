@@ -21,15 +21,23 @@ Route::group(['namespace'=>'Back'],function(){
 
 Route::group(['namespace'=>'Front'],function(){
     Route::get('/', 'HomeController@index')->name('hompage');
+
     Route::get('/shop', 'ProductController@AllProductList')->name('shop');
+
     Route::get('/shop/category/{id}', 'ProductController@categoryProductList')->name('categoryList');
+
     Route::get('/shop/product/{slug?}', 'ProductController@productDetails')->name('productDetails');
+
+
     Route::get('/cart', 'CartController@List')->name('cartList');
     Route::delete('/cart/destroy/{id}', 'CartController@destroy')->name('cartDelete');
     Route::post('/cart/cartadd/{id}', 'CartController@CartAdd')->name('CartAdd');
     Route::post('/cart/cartProductUpdate', 'CartController@quantityUpdate')->name('quantity');
-    Route::get('/checkout', 'CartController@checkout')->name('order');
-    Route::post('/checkout/add', 'CartController@checkoutAdd')->name('orderAdd');
+
+
+    Route::get('/checkout', 'CheckoutController@checkout')->name('order');
+    Route::post('/checkout/add', 'CheckoutController@checkoutAdd')->name('orderAdd');
+    Route::get('/checkout/list', 'CheckoutController@checkoutList')->name('checkoutList');
 
 
 

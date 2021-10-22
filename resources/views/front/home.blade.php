@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title', 'site title')
+@section('title', ' Ana Sayfa')
 @section('slider')
 <div id="carouselExampleIndicators" class="with-background carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">

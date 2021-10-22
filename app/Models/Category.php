@@ -23,15 +23,6 @@ class Category extends Model
             'product_id');
     }
 
-    public function alt_kategoriler()
-    {
-        return $this->hasMany('App\Models\Category', 'parent_id', 'id');
-    }
     
-    public function ust_kategori() {
-        return $this->belongsTo('App\Models\Category', 'ust_id')->withDefault([
-            'name' => 'Ana Kategori'
-        ]);
-    }
 
 }

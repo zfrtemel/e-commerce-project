@@ -23,6 +23,8 @@ class ProductSeed extends Seeder
                     'Monitör 1','Monitör 2','Monitör 3',
                     'Klavye 1','Klavye 2','Klavye 3'
     ];
+
+
         foreach ($products as $key) {
             $slug =Str::slug($key, '-');
             DB::table('products')->insert([
@@ -35,42 +37,37 @@ class ProductSeed extends Seeder
 
         }
         
-        for ($i=1; $i < 7; $i++) { 
-            for ($x=1; $x < 4; $x++) { 
+        for ($i=1; $i < 19; $i++) { 
+            for ($x=1; $x < 7; $x++) { 
                 DB::table('product_categories')->insert([
                     'product_id'=>$i,
-                    'category_id'=>$i,
+                    'category_id'=>$x,
             ]);
             }
         }
 
 
-$sayi=1;
+        $sayi=1;
 
         for ($z=1; $z < 19; $z++) { 
             if ($sayi ==4) {
                 $sayi=1;
             }
-           
-
             for ($i=1; $i < 4; $i++) { 
-            
-                
-                
                     DB::table('product_images')->insert([
                         'images_id'=>$sayi,
                         'product_id'=>$z,
                      ]);
             }
-            $sayi=$sayi+1;
-                
+            $sayi=$sayi+1;  
         }
+        
+        
         for ($i=1; $i <5 ; $i++) { 
             DB::table('sliders')->insert([
                         'slider_url'=>'\assets\img\slider.jpg',
                         'slider_order'=>$i,
                      ]);
-            
         }
 
        

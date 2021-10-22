@@ -11,9 +11,8 @@
         @endif
 
         <div class="cart-table">
-            
+           
             @foreach ($cartsItem as $item )
-
 
             <div class="cart-table-row">
                 <div class="cart-table-row-left">
@@ -56,7 +55,7 @@
         </div> <!-- end cart-table -->
 
 
-    
+   
         <div class="cart-totals">
             <div class="cart-totals-left">
              sepetteki ürünlerinizi satın alabilirsiniz

@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title', 'site title')
+@section('title', 'Sipariş Ver')
 
 
 
@@ -74,6 +74,7 @@
           <div id="card-errors" role="alert"></div>
         </div>
         <div class="spacer"></div>
+        <input type="hidden" class="form-control" id="billing_total"  name="billing_total" value="">
 
         <button type="submit" id="complete-order" class="button-primary full-width">Siparişi Tamamla</button>
 
@@ -104,7 +105,7 @@
           </div> <!-- end checkout-table -->
 
           <div class="checkout-table-row-right">
-            <div class="checkout-table-quantity">1</div>
+            <div class="checkout-table-quantity">{{$item->quantity}}</div>
           </div>
         </div> <!-- end checkout-table-row -->
 
@@ -112,7 +113,7 @@
 {{-- loop->last --}}
 
 @php
-   $totals= $totals+$item->product->price;
+   $totals= $totals+$item->product->price*$item->quantity;
 @endphp
 @if($loop->last)
   
@@ -124,8 +125,8 @@
   </div>
 
   <div class="checkout-totals-right">
-    
-    <span class="checkout-totals-total">{{$totals}}₺</span>
+
+    <span class="checkout-totals-total totalSpan">{{$totals}}</span> <span class="checkout-totals-total">₺</span>
 
   </div>
 </div> <!-- end checkout-totals -->
@@ -142,5 +143,10 @@
 
 
 @section('customJS')
-
+<script>
+$(document).ready(function(){
+var data = $('.totalSpan').html();
+$('#billing_total').val(data);
+});
+</script>
 @endsection

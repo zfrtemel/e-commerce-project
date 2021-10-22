@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title', 'site title')
+@section('title', 'Ürünler')
 @section('breadcrumbs',$category->first()->name)
 @section('content')
 
@@ -25,12 +25,7 @@
         <div class="products-header">
             
             <h1 class="stylish-heading">{{$category->first()->name??'Tüm Ürünler'}}</h1>
-            <div>
-                <strong>Fiyat: </strong>
-                <a href="shop6330.html?sort=low_high">En Düşük Fiyat</a> |
-                <a href="shop94e1.html?sort=high_low">En Yüksek Fiyat</a>
-
-            </div>
+         
         </div>
 
         <div class="products text-center">
